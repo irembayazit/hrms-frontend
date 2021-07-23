@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/irembayazit/hrms-frontend/00c0c8afa0ef444e5d884336377957cfc19df91c/UML.svg)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
