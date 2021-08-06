@@ -1,16 +1,17 @@
 import React from 'react'
 import { useState,useEffect } from "react";
 import { Input, Menu, Label } from "semantic-ui-react";
-import JobAdvertisementService from '../services/JobAdvertisementService'
+import JobPositionService from '../services/JobPositionService'
 
 export default function JobPositionsList() {
 
-    const [jobadvertisements, setJobAdvertisement] = useState([])
-
-    useEffect(()=>{
-        let jobAdvertisementService = new JobAdvertisementService()
-        jobAdvertisementService.getJobAdvertisements().then(result=>setJobAdvertisement(result.data.data))
-    })
+    const [jobPositions, setJobPositions] = useState([]);
+  useEffect(() => {
+    let jobPositionService = new JobPositionService();
+    jobPositionService
+      .getJobPositions()
+      .then((result) => setJobPositions(result.data.data));
+  }, [])
 
     return (
         <div>
@@ -19,10 +20,9 @@ export default function JobPositionsList() {
                     <Input icon='search' placeholder='Search mail...' />
                 </Menu.Item>
 
-                {jobadvertisements.map((jobadvertisement) => (
-                    <Menu.Item name='inbox' key={jobadvertisement.id}>
-                        <Label color='teal'>{jobadvertisement.openPoisitons}</Label>
-                        {jobadvertisement.jobPositionId.title}              
+                {jobPositions.map((jobPosition) => (
+                    <Menu.Item name='inbox' key={jobPosition.id}>
+                        {jobPosition.title}              
                     </Menu.Item>
                 ))}
 
