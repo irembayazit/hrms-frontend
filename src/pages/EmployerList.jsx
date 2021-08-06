@@ -12,8 +12,8 @@ export default function EmployerList() {
         employerService.getEmployers().then(result=>setEmployers(result.data.data))
     },[])
     
-    return (
-        <div>
+    return (  
+        <div> 
             <Table celled>
                 <Table.Header>
                     <Table.Row>
