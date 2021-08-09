@@ -8,6 +8,7 @@ import CityService from "../services/CityService";
 import JobPositionService from "../services/JobPositionService";
 import { useEffect } from "react";
 import JobAdvertisementService from "../services/JobAdvertisementService";
+import { toast } from "react-toastify";
 
 export const JobAdvertisementAdd = () => {
   const [jobPositions, setJobPositions] = useState([]);
@@ -40,8 +41,6 @@ export const JobAdvertisementAdd = () => {
       .then((result) => setWorkingTime(result.data.data));
   }, []);
 
-  let jobAdvertisementService = new JobAdvertisementService();
-
   return (
     
     <Formik
@@ -52,9 +51,10 @@ export const JobAdvertisementAdd = () => {
         releaseDate: "",
         deadline: "",
         definition: "",
-        employer:{ userId: 76 }
+        employer:{ userId: 76 },
+        openPositions:1
       }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
+      onSubmit= {async (values, { setSubmitting, resetForm }) => {
         console.log(values);
         console.log(typeOfWorks);
 
@@ -63,7 +63,17 @@ export const JobAdvertisementAdd = () => {
         values.city = JSON.parse(values.city);
         values.openPositions = JSON.parse(values.openPositions);
         values.jobPosition = JSON.parse(values.jobPosition);
-        jobAdvertisementService.addAdvertisement(values);
+
+        const result = new JobAdvertisementService().addAdvertisement(values);
+        console.log((await result).data);
+        console.log((await result).data.message);
+
+        if ((await result).data.success)
+        {
+          console.log("çalıştı");
+          toast.success((await result).data.message);
+        } 
+        //else toast.error(result.data.message);
 
         setTimeout(() => {
           setSubmitting(false);
@@ -194,7 +204,7 @@ export const JobAdvertisementAdd = () => {
               id="releaseDate"
               control={Input}
               type="date"
-              label="Release date:"
+              label="Release date"
               value={values.releaseDate}
               onChange={handleChange}
             />
@@ -203,15 +213,15 @@ export const JobAdvertisementAdd = () => {
               id="deadline"
               control={Input}
               type="date"
-              label="Deadline :"
+              label="Deadline"
               value={values.deadline}
               onChange={handleChange}
             />
-            <Form.Field
-              type="number"
+            <Form.Field              
               required
               id="openPositions"
               control={Input}
+              type="number"
               label="Open Position"
               placeholder="Open Position"
               value={values.openPositions}

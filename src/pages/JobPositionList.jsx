@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from "react";
-import { Input, Menu, Label } from "semantic-ui-react";
+import { Input, Menu} from "semantic-ui-react";
 import JobPositionService from '../services/JobPositionService'
 
 export default function JobPositionsList() {

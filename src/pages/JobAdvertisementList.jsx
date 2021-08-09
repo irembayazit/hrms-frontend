@@ -28,7 +28,7 @@ export default function JobAdvertisementList() {
                   <Card.Header>{jobadvertisement.employer.companyName}</Card.Header>
                   <Card.Meta>{jobadvertisement.city.cities}</Card.Meta>
                   <Card.Description>
-                  {jobadvertisement.definition} <strong>{jobadvertisement.jobPositionId.title}</strong>
+                  {jobadvertisement.definition} <strong>{jobadvertisement.jobPosition.title}</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
