@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { Form, Input, TextArea } from "semantic-ui-react";
 import "react-datepicker/dist/react-datepicker.css";
-import TypeOfWorkService from "../services/TypeOfWorkService";
-import WorkingTimeService from "../services/WorkingTimeService";
-import CityService from "../services/CityService";
-import JobPositionService from "../services/JobPositionService";
+import TypeOfWorkService from "../../services/TypeOfWorkService";
+import WorkingTimeService from "../../services/WorkingTimeService";
+import CityService from "../../services/CityService";
+import JobPositionService from "../../services/JobPositionService";
 import { useEffect } from "react";
-import JobAdvertisementService from "../services/JobAdvertisementService";
+import JobAdvertisementService from "../../services/JobAdvertisementService";
 import { toast } from "react-toastify";
 
 export const JobAdvertisementAdd = () => {
