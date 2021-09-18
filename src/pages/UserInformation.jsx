@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid, GridColumn, Card, Image, Button, Table, Divider, Header, Icon, Portal, Segment, Form} from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import avatar from "../images/avatar.png"
+import avatar from "../images/avatar2.png"
 import profil from "../images/profil.png"
 
 export default class UserInformation extends Component {
@@ -60,16 +60,17 @@ fileSelectedHandler = event =>{
     this.photo = this.state.selectedFile.name
 } 
 
+
  render(){
     const { activeIndex } = this.state
-
+    const { photoValue } = this.state
   return (   
     <Grid>
         <Grid.Row>
             <GridColumn width={6}>
                 <Card>
                     <img                    
-                    src = {require('../images/avatar.png')}
+                    src = {this.state.image ? avatar : profil}
                     />
                     <Card.Content >
                         <Card.Header style={{ float:"left", marginRight:"20em" }} >Matthew</Card.Header>
@@ -88,6 +89,7 @@ fileSelectedHandler = event =>{
                     </Card.Content>
                 </Card>
             </GridColumn>
+            
             <GridColumn width={10}> 
                 <Divider horizontal>
                     <Header as='h4'>
@@ -120,7 +122,7 @@ fileSelectedHandler = event =>{
                                 <Button
                                     active={activeIndex === true}
                                     onClick={this.handleClick}
-                                    style={{float:"right",}} 
+                                    style={{float:"right",backgroundColor:"grey"}} 
                                     name="low vision"
                                 >
                                     New Password
@@ -129,11 +131,10 @@ fileSelectedHandler = event =>{
                         </Table.Row>
                     </Table.Body>                    
                 </Table>
-                
                 <Segment inverted style={{display:this.state.activeIndex ? "" : "none"}}>
                     <Form inverted>
                     <Form.Group widths='equal'>
-                        <Form.Input fluid label='Old Password' placeholder='Old Password' required style={{width:"23.5em"}} />
+                        <Form.Input fluid type="password" label='Old Password' placeholder='Old Password' required style={{width:"23.5em"}} />
                         <Form>
                             <div style={{height:"60px",width:"400px"}}>
                                 <Link style={{marginRight:"5em"}}>I forgot my password</Link>
@@ -141,59 +142,160 @@ fileSelectedHandler = event =>{
                         </Form>
                     </Form.Group>
                     <Form.Group widths='equal'>
-                        <Form.Input fluid label='New Password' placeholder='New Password' required />
-                        <Form.Input fluid label='New Password Again' placeholder='New Password Again' required/>
+                        <Form.Input fluid type="password" label='New Password' placeholder='New Password' required />
+                        <Form.Input fluid type="password" label='New Password Again' placeholder='New Password Again' required/>
                     </Form.Group>
                     <Button type='submit'>Change</Button>
                     </Form>
                 </Segment>
 
-                <Button  as={Link} to={"/JobSeekerCv/Add"} style={{float:"left",backgroundColor:"black",color:"violet"}}>Update Your CV Info</Button> 
-                
-                
-                <Portal open={this.state.open}>
-                    <Segment
-                    style={{
-                        left: '40%',
-                        position: 'fixed',
-                        top: '20%',
-                        zIndex: 1000,
-                        backgroundColor:"black",                        
-                    }}
-                    >
-                    <Header style={{color:"white"}}>Are you sure you want to delete the picture?</Header>
-                    <Button
-                        primary
-                        content='Yes'  
-                        onClick={this.open}                
-                    /> 
-                    <Button
-                        content='No'
-                        negative
-                        onClick={this.close}
-                    />
-                    </Segment>
-                </Portal>
+                <Divider horizontal>
+                    <Header as='h4'>
+                        <Icon name='graduation cap' />
+                        Education
+                    </Header>
+                </Divider>
+                <Table definition>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={3}>School Name</Table.Cell>
+                            <Table.Cell>Matthew</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Department Name</Table.Cell>
+                            <Table.Cell>6 ounces
+                                <Button
+                                    active={activeIndex === true}
+                                    onClick={this.handleClick}
+                                    style={{float:"right",backgroundColor:"green"}} 
+                                    name="low vision"
+                                >
+                                Update
+                                </Button></Table.Cell>
+                        </Table.Row>
+                    </Table.Body>                    
+                </Table> 
 
-                <Segment  
-                style={{
-                    display:this.state.imageChange ? "" : "none",
-                    left: '13%',
-                    position: 'fixed',
-                    top: '72%',
-                    zIndex: 1000,
-                    backgroundColor:"black",
-                    color:"white",
-                }}>
-                    <input onChange={this.fileSelectedHandler} type="file"/>
-                    <Button onClick={this.fileUploadHandler}  disabled={this.state.selectedFile==null}>Change</Button>
-                </Segment>
-                
-                 
-                
-                            
+                <Divider horizontal>
+                    <Header as='h4'>
+                        <Icon name='briefcase' />
+                        Experience
+                    </Header>
+                </Divider>
+                <Table definition>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={3}>Workplace Name</Table.Cell>
+                            <Table.Cell>Matthew</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Position</Table.Cell>
+                            <Table.Cell>6 ounces</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>                    
+                </Table>
+
+                <Divider horizontal>
+                    <Header as='h4'>
+                        <Icon name='bookmark' />
+                        Skill
+                    </Header>
+                </Divider>
+                <Table definition>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={3}>Skills</Table.Cell>
+                            <Table.Cell>C#,C++</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>                    
+                </Table>
+
+                <Divider horizontal>
+                    <Header as='h4'>
+                        <Icon name='globe' />
+                        Language
+                    </Header>
+                </Divider>
+                <Table definition>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={3}>Languages</Table.Cell>
+                            <Table.Cell>English</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>                    
+                </Table>
+
+                <Divider horizontal>
+                    <Header as='h4'>
+                        <Icon name='map marker alternate' />
+                        Address
+                    </Header>
+                </Divider>
+                <Table definition>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={3}>Address</Table.Cell>
+                            <Table.Cell>Turkey</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>                    
+                </Table> 
+
+                <Divider horizontal>
+                    <Header as='h4'>
+                        <Icon name='envelope'/>
+                        Cover Letter
+                    </Header>
+                </Divider>
+                <Table definition>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell width={3}>Cover Letter</Table.Cell>
+                            <Table.Cell>Example Cover letter</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>                    
+                </Table>                 
+
+                <Button type="file" style={{float:"left",backgroundColor:"black",color:"violet"}}>Update Your CV file</Button> 
+                               
             </GridColumn>              
         </Grid.Row>
+        
+        <Portal open={this.state.open}>
+            <Segment
+            style={{
+                left: '40%',
+                position: 'fixed',
+                top: '20%',
+                zIndex: 1000,
+                backgroundColor:"black",                        
+            }}
+            >
+            <Header style={{color:"white"}}>Are you sure you want to delete the picture?</Header>
+            <Button
+                primary
+                content='Yes'  
+                onClick={this.open}                
+            /> 
+            <Button
+                content='No'
+                negative
+                onClick={this.close}
+            />
+            </Segment>
+        </Portal>
+        <Segment  
+            style={{
+                display:this.state.imageChange ? "" : "none",
+                left: '13%',
+                position: 'fixed',
+                top: '72%',
+                zIndex: 1000,
+                backgroundColor:"black",
+                color:"white",
+            }}>
+                <input onChange={this.fileSelectedHandler} type="file"/>
+                <Button onClick={this.fileUploadHandler} value={photoValue} disabled={this.state.selectedFile==null}>Change</Button>
+        </Segment>  
     </Grid>
 
     
